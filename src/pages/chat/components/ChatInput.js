@@ -12,7 +12,7 @@ const ChatInput = () => {
 
     return (<div className="chat-input">
         <TextArea className='val-input' value={inputVal} onChange={(e) => handleInput(e)} rows={4}></TextArea>
-        <Button className='send-btn' type="primary" size='large' icon={<SendOutlined />} />
+        <Button disabled={!inputVal} className='send-btn' type="primary" size='large' icon={<SendOutlined />} />
 
     </div>);
 }
