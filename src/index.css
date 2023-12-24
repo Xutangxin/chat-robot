@@ -21,6 +21,9 @@ body {
   margin: 0 auto;
   height: 100%;
   padding: 30px 20px;
+  @media screen and (max-width: 800px) {
+    padding: 10px;
+  }
 }
 
 .chat-list {
