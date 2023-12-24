@@ -3,19 +3,32 @@ import ChatInput from "./components/ChatInput";
 import ChatList from "./components/ChatList";
 
 const Chat = () => {
+    const hello = "你好，我是机器人，请输入你的问题"
     const [list, setList] = useState([{
-        val: '请输入你的问题',
+        val: hello,
         type: 'answer'
     }])
 
 
     function handleSend(val) {
-        const newList = [...list, {
+        addMsg({
             val,
             type: 'question'
-        }]
-        setList(newList)
+        })
+        setTimeout(() => {
+            handleReplay()
+        }, 1000);
+    }
 
+    function handleReplay() {
+        addMsg({
+            val: hello,
+            type: 'answer'
+        })
+    }
+
+    function addMsg(val) {
+        setList((current) => [...current, val])
     }
 
     return (<div className="chat">

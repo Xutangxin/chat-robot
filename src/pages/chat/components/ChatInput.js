@@ -20,7 +20,7 @@ const ChatInput = (props) => {
 
 
     return (<div className="chat-input">
-        <TextArea className='val-input' value={inputVal} rows={4}
+        <TextArea className='val-input' placeholder='请输入内容' value={inputVal} rows={4}
             onChange={(e) => handleInput(e)}
             onKeyDown={(e) => handleKeyDown(e)}
         ></TextArea>

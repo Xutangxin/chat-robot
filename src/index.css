@@ -17,20 +17,26 @@ body {
 .chat {
   display: flex;
   flex-direction: column;
-  max-width: 900px;
+  max-width: 800px;
   margin: 0 auto;
   height: 100%;
   padding: 30px 20px;
-  /* border: 1px solid lightgray; */
-  /* border-radius: 8px; */
 }
 
 .chat-list {
   flex: 1;
+  padding: 0 10px;
+  overflow: auto;
 }
 
 .chat-input {
   display: flex;
+  textarea {
+    padding: 10px;
+  }
+  textarea::placeholder {
+    font-size: 16px;
+  }
 }
 
 .val-input {
@@ -43,23 +49,40 @@ body {
 
 .chat-msg {
   display: flex;
-  padding: 10px;
+  padding: 15px 10px;
   .content {
     display: flex;
     width: 100%;
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 3px;
+    }
+    &.question {
+      justify-content: end;
+      img {
+        margin-left: 8px;
+      }
+    }
+    &.answer {
+      img {
+        margin-right: 8px;
+      }
+      .msg {
+        background: #e7f1fc;
+      }
+    }
+
     .msg {
       padding: 10px;
-      width: fit-content;
       border-radius: 7px;
+      max-width: calc(100% - 120px);
       white-space: pre-wrap;
       word-wrap: break-word;
       color: #16191d;
-      background: #f9fafb;
+      /* background: #f9fafb; */
+      background: #eee;
       line-height: 20px;
-      max-width: calc(100% - 50px);
-    }
-    &.question {
-      align-self: self-end;
     }
   }
 }
