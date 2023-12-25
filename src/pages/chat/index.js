@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useRef, useState } from "react";
 import ChatInput from "./components/ChatInput";
 import ChatList from "./components/ChatList";
 
@@ -30,12 +30,15 @@ const Chat = () => {
         type: 'answer'
     }])
 
+    const listRef = useRef('')
+
 
     function handleSend(val) {
         addMsg({
             val,
             type: 'question'
         })
+        scrollToBottom()
         setTimeout(() => {
             handleReplay()
         }, 1000);
@@ -46,14 +49,21 @@ const Chat = () => {
             val: replyList[Math.floor(Math.random() * 20)],
             type: 'answer'
         })
+        scrollToBottom()
     }
 
     function addMsg(val) {
         setList((current) => [...current, val])
     }
 
+    function scrollToBottom() {
+        setTimeout(() => {
+            listRef.current.scrollTop = listRef.current.scrollHeight;
+        }, 200);
+    }
+
     return (<div className="chat">
-        <ChatList list={list}></ChatList>
+        <ChatList ref={listRef} list={list}></ChatList>
         <ChatInput handleSend={handleSend}></ChatInput>
     </div>);
 }

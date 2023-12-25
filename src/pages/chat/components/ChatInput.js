@@ -11,9 +11,13 @@ const ChatInput = (props) => {
         setInputVal(e.target.value)
     }
     function handleKeyDown(e) {
-        // if (e.code !== "Enter") return
+        const { ctrlKey, key } = e
+        if (ctrlKey && key === 'Enter') {
+            send()
+        }
     }
-    function handleClick() {
+
+    function send(params) {
         handleSend(inputVal)
         setInputVal('')
     }
@@ -24,7 +28,7 @@ const ChatInput = (props) => {
             onChange={(e) => handleInput(e)}
             onKeyDown={(e) => handleKeyDown(e)}
         ></TextArea>
-        <Button onClick={handleClick} disabled={!inputVal} className='send-btn' type="primary" size='large' icon={<SendOutlined />} />
+        <Button onClick={send} disabled={!inputVal} className='send-btn' type="primary" size='large' icon={<SendOutlined />} />
 
     </div>);
 }
