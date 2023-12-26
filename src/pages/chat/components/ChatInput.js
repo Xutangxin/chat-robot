@@ -1,10 +1,10 @@
-import { Input, Button } from 'antd';
+import { Input, Button, message } from 'antd';
 import { useState } from 'react';
 import { SendOutlined } from '@ant-design/icons';
 const { TextArea } = Input;
 
 const ChatInput = (props) => {
-    const { handleSend } = props
+    const { handleSend, disabled } = props
     const [inputVal, setInputVal] = useState('')
 
     function handleInput(e) {
@@ -17,7 +17,11 @@ const ChatInput = (props) => {
         }
     }
 
-    function send(params) {
+    function send() {
+        if (disabled) {
+            message.warning('请等待当前回答完成')
+            return
+        }
         handleSend(inputVal)
         setInputVal('')
     }
