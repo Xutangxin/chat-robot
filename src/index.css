@@ -80,7 +80,7 @@ body {
     .msg {
       padding: 10px;
       border-radius: 7px;
-      max-width: calc(100% - 120px);
+      max-width: calc(100% - 87px);
       white-space: pre-wrap;
       word-wrap: break-word;
       color: #16191d;

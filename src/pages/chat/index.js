@@ -1,6 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import ChatInput from "./components/ChatInput";
 import ChatList from "./components/ChatList";
+import { getReply, getToken } from "../../api";
 
 const Chat = () => {
     const replyList = [
@@ -32,6 +33,10 @@ const Chat = () => {
 
     const listRef = useRef('')
 
+    // useEffect(() => {
+    //     getToken()
+    // }, [])
+
 
     function handleSend(val) {
         addMsg({
@@ -44,12 +49,16 @@ const Chat = () => {
         }, 1000);
     }
 
-    function handleReplay() {
+    async function handleReplay() {
         addMsg({
             val: replyList[Math.floor(Math.random() * 20)],
             type: 'answer'
         })
         scrollToBottom()
+        // const res = getReply({
+        //     text: '你好吗',
+        // }).catch((err) => {
+        // })
     }
 
     function addMsg(val) {

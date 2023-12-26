@@ -4,7 +4,7 @@ import AvatarModal from "./AvatarModal"
 // import style from './ChatMsg.css'
 
 const ChatMsg = (props) => {
-    const robotSrc = "https://img.88icon.com/upload/jpg/20210627/a2bf2491c7a21c5a7025bf6b0d46d5ff_27470_512_512.jpg!bg"
+    const robotSrc = "https://tse1-mm.cn.bing.net/th/id/OIP-C.JzJdJa3OyVcpC43tYD4sRQAAAA?w=169&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
 
     const { type, msg, avatar, changeAvatar } = props
 
