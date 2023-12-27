@@ -22,7 +22,7 @@ const ChatList = forwardRef((props, ref) => {
     }, [])
 
     return (<div className="chat-list" ref={ref}>
-        {list.map((i, index) => <ChatMsg key={index} avatar={avatar} msg={i.val} type={i.type} changeAvatar={changeAvatar}></ChatMsg>)}
+        {list.map((i, index) => <ChatMsg key={index} avatar={avatar} msg={i.val} type={i.type} isAnswering={i.isAnswering} changeAvatar={changeAvatar}></ChatMsg>)}
     </div>);
 })
 

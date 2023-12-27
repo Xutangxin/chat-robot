@@ -1,12 +1,10 @@
 import { useState } from "react"
 import AvatarModal from "./AvatarModal"
 
-// import style from './ChatMsg.css'
-
 const ChatMsg = (props) => {
     const robotSrc = "https://tse1-mm.cn.bing.net/th/id/OIP-C.JzJdJa3OyVcpC43tYD4sRQAAAA?w=169&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
 
-    const { type, msg, avatar, changeAvatar } = props
+    const { type, msg, avatar, changeAvatar, isAnswering = false } = props
 
     const [visible, setVisible] = useState(false)
 
@@ -25,7 +23,11 @@ const ChatMsg = (props) => {
                 <img
 
                     src={robotSrc}
-                    alt="" className="avatar" />  <div className="msg">{msg}</div>
+                    alt="" className="avatar" />  <div className="msg">{msg}
+                    {
+                        isAnswering && <i className="flicker"></i>
+                    }
+                </div>
             </div>
 
         )

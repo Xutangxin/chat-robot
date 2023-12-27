@@ -21,11 +21,18 @@ body {
   max-width: 800px;
   margin: 0 auto;
   height: 100%;
-  padding: 20px;
+  padding: 16px;
   background: #fff;
   border-radius: 8px;
   @media screen and (max-width: 800px) {
     padding: 10px;
+  }
+}
+.chat-header {
+  text-align: center;
+  padding-bottom: 16px;
+  h2 {
+    font-size: 20px;
   }
 }
 
@@ -50,6 +57,11 @@ body {
   align-self: end;
 }
 
+@keyframes blink {
+  50% {
+    background: transparent;
+  }
+}
 .chat-msg {
   display: flex;
   padding: 8px 12px;
@@ -74,19 +86,28 @@ body {
       }
       .msg {
         background: #e7f1fc;
+        border-radius: 0 8px 8px 8px;
       }
     }
 
     .msg {
       padding: 10px;
-      border-radius: 7px;
+      border-radius: 8px 0 8px 8px;
       max-width: calc(100% - 87px);
       white-space: pre-wrap;
       word-wrap: break-word;
       color: #16191d;
-      /* background: #f9fafb; */
       background: #eee;
       line-height: 18px;
+      .flicker {
+        display: inline-block;
+        width: 4px;
+        height: 14px;
+        background: #16191d;
+        margin-left: 3px;
+        animation: blink 0.5s steps(1) infinite;
+        transform: translateY(2px);
+      }
     }
   }
 }
