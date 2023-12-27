@@ -1,22 +1,30 @@
 import React, { useRef, useState, useEffect } from "react";
 import ChatInput from "./components/ChatInput";
 import ChatList from "./components/ChatList";
-// import { getReply, getToken } from "../../api";
-import { answerList } from "../../mock/reply";
+import { getReply, getToken } from "../../api";
 
 const Chat = () => {
-    const replyList = [...answerList]
     const [isReplying, setIsReplying] = useState(false)
+    const [token, setToken] = useState('')
     const [list, setList] = useState([{
-        val: '你好，我是机器人，请输入你的问题',
+        val: '愚蠢的人类，输入你的问题',
         type: 'answer'
     }])
     const listRef = useRef('')
 
-    // useEffect(() => {
-    //     getToken()
-    // }, [])
+    useEffect(() => {
+        fetchToken()
+    }, [])
 
+    async function fetchToken() {
+        try {
+            const res = await getToken()
+            const { data: { access_token } } = res
+            setToken(access_token)
+        } catch (err) {
+            console.log('err', err)
+        }
+    }
 
     function handleSend(val) {
         addMsg({
@@ -25,18 +33,34 @@ const Chat = () => {
         })
         scrollToBottom()
         setTimeout(() => {
-            handleReplay()
+            handleReplay(val)
         }, 1000);
     }
 
-    async function handleReplay() {
-        setIsReplying(true)
+    async function handleReplay(question) {
         addMsg({
-            val: '',
+            val: '请稍等',
             type: 'answer',
             isAnswering: true,
         })
-        const val = replyList[Math.floor(Math.random() * replyList.length)]
+        const res = await getReply(token, {
+            "messages": [
+                {
+                    "role": "user",
+                    "content": question
+                },
+            ],
+            "disable_search": false
+        })
+        const { status, data: { result } } = res
+        if (status === 200) {
+            setIsReplying(true)
+            answer(result)
+            scrollToBottom()
+        }
+    }
+
+    function answer(val) {
         let index = 0
         let timer
         const step = 3
@@ -56,7 +80,8 @@ const Chat = () => {
                 scrollToBottom()
             }
         }, 150);
-        scrollToBottom()
+
+
     }
 
     function setLastVal(val) {
