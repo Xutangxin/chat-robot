@@ -43,6 +43,7 @@ const Chat = () => {
             type: 'answer',
             isAnswering: true,
         })
+        scrollToBottom()
         const res = await getReply(token, {
             "messages": [
                 {
@@ -56,14 +57,16 @@ const Chat = () => {
         if (status === 200) {
             setIsReplying(true)
             answer(result)
-            scrollToBottom()
         }
     }
 
     function answer(val) {
         let index = 0
-        let timer
+        let timer, scrollTimer
         const step = 3
+        scrollTimer = setInterval(() => {
+            scrollToBottom()
+        }, 1000);
         timer = setInterval(() => {
             const str = val.slice(0, index)
             index += step
@@ -75,6 +78,7 @@ const Chat = () => {
             setLastVal(lastVal)
             if (index > val.length - 1 + step) {
                 clearInterval(timer)
+                clearInterval(scrollTimer)
                 setIsReplying(false)
                 setLastVal({ ...lastVal, isAnswering: false })
                 scrollToBottom()
