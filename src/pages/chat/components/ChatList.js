@@ -17,8 +17,8 @@ const ChatList = forwardRef((props, ref) => {
     }
 
     useEffect(() => {
-        const url = localStorage.getItem('avatarUrl').trim() || humanAvatar
-        setAvatar(url)
+        const url = localStorage.getItem('avatarUrl')
+        setAvatar(url ? url.trim() : humanAvatar)
     }, [])
 
     return (<div className="chat-list" ref={ref}>
