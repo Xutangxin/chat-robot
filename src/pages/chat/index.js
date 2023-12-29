@@ -63,7 +63,7 @@ const Chat = () => {
     function answer(val) {
         let index = 0
         let timer, scrollTimer
-        const step = 3
+        const step = 5
         scrollTimer = setInterval(() => {
             scrollToBottom()
         }, 1000);
