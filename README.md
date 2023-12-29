@@ -1,4 +1,4 @@
-![image](https://github.com/Xutangxin/chat-robot/assets/59362579/a4e9fcf4-2454-4229-bf89-d5e63c5bc4b3)
+![image](https://github.com/Xutangxin/chat-robot/assets/59362579/b4b91196-28e7-4be5-938a-c2b312fe38d7)
 
 
 # Getting Started with Create React App
