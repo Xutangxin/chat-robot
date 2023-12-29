@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import ChatInput from "./components/ChatInput";
 import ChatList from "./components/ChatList";
-import { getReply, getToken } from "../../api";
+import { getReply, getToken } from "@/api";
 
 const Chat = () => {
     const [isReplying, setIsReplying] = useState(false)
@@ -14,7 +14,12 @@ const Chat = () => {
 
     useEffect(() => {
         fetchToken()
+        // getHistory()
     }, [])
+
+    // useEffect(() => {
+    //     setHistory()
+    // }, [list])
 
     async function fetchToken() {
         try {
@@ -31,6 +36,7 @@ const Chat = () => {
             val,
             type: 'question'
         })
+        // setHistory()
         scrollToBottom()
         setTimeout(() => {
             handleReplay(val)
@@ -76,7 +82,8 @@ const Chat = () => {
                 isAnswering: true
             }
             setLastVal(lastVal)
-            if (index > val.length - 1 + step) {
+            // setHistory()
+            if (index > val.length - 1 + step) {// 回答结束
                 clearInterval(timer)
                 clearInterval(scrollTimer)
                 setIsReplying(false)
@@ -100,6 +107,16 @@ const Chat = () => {
         setTimeout(() => {
             listRef.current.scrollTop = listRef.current.scrollHeight;
         }, 100);
+    }
+
+    function setHistory() {
+        localStorage.setItem('chatHistory', JSON.stringify(list))
+    }
+
+    function getHistory() {
+        const val = localStorage.getItem('chatHistory')
+        const list = val ? JSON.parse(val) : []
+        setList(list)
     }
 
     return (<div className="chat">
