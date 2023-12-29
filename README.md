@@ -1,3 +1,6 @@
+![image](https://github.com/Xutangxin/chat-robot/assets/59362579/a4e9fcf4-2454-4229-bf89-d5e63c5bc4b3)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
